@@ -1,0 +1,16 @@
+<ion-view view-title="Login">
+  <ion-content>
+    <form>
+        <div class='form-group'>
+            <label>Usuário</label>
+            <input placeholder="Usuário" class="form-control" ng-model='usuario.nome' type="text">
+        </div>
+        <div class='form-group'>
+            <label class='text-center'>Senha</label>
+            <input placeholder="Senha" class="form-control" ng-model='usuario.senha' type="password">
+        </div>
+        <button ng-click='login()'>Login</button>
+    </form>
+
+  </ion-content>
+</ion-view>
