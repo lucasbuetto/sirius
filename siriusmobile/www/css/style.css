@@ -1,1 +1,8 @@
 /* Empty. Add your own CSS if you like */
+.checkbox-button{
+    float: left;
+}
+
+.checkbox-label{
+    margin-left: 1em;
+}
