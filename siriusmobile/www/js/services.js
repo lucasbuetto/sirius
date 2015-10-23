@@ -44,7 +44,7 @@ angular.module('app.services', [])
         }).success(function (data) {
             callbackFunc(data);
         }).error(function (data) {
-            console.log(data); //Note que aqui eu coloquei para minha aplicação mostrar o erro no console log, mas vc deve inserir uma mensagem amigavel para ser exibida.
+            console.log(data);
 
         });
     }
@@ -57,8 +57,7 @@ angular.module('app.services', [])
         }).success(function (data) {
             callbackFunc(data);
         }).error(function (data) {
-            console.log(data); //Note que aqui eu coloquei para minha aplicação mostrar o erro no console log, mas vc deve inserir uma mensagem amigavel para ser exibida.
-
+            console.log(data);
         });
     }
 }]);;

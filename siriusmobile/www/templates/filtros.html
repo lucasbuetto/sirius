@@ -1,21 +1,75 @@
 <ion-view title="Filtros">
     <ion-content padding="true" class="has-header">
+        <ion-header-bar class="bar-positive">
+          <h1 class="title">Filtros</h1>
+        </ion-header-bar>
         <h4>Período</h4>
         <form class="list">
-            <label class="item item-input">
-                <span class="input-label">De</span>
-                <input type="date" placeholder="Data Inicial">
-            </label>
-            <label class="item item-input">
-                <span class="input-label">Até</span>
-                <input type="date" placeholder="Data Final">
-            </label>
-            <h4>Segmentos</h4>
-            <ion-checkbox ng-model='s.isChecked' ng-repeat='s in segmentos'>{{ s.segmento }}</ion-checkbox>
-            <h4>Empresas</h4>
-            <ion-checkbox ng-model='e.isChecked' ng-repeat='e in empresas'>{{ e.nomereduzido }}</ion-checkbox>
-            <h4>PDV</h4>
-            <ion-checkbox>Checkbox</ion-checkbox>
+            <ion-item class="item-stable"
+                    ng-click="toggleGroup('periodo')"
+                    ng-class="{active: mostraGrupo('periodo')}">
+              <i class="icon" ng-class="mostraGrupo('periodo') ? 'ion-minus' : 'ion-plus'"></i>
+            Período
+            </ion-item>
+            
+            <div class="item-accordion"
+                 ng-show="mostraGrupo('periodo')">
+                <label class="item item-input">
+                    <span class="input-label">De</span>
+                    <input type="date" placeholder="Data Inicial">
+                </label>
+                <label class="item item-input">
+                    <span class="input-label">Até</span>
+                    <input type="date" placeholder="Data Final">
+                </label>
+            </div>
+            
+            <ion-item class="item-stable"
+                    ng-click="toggleGroup('segmentos')"
+                    ng-class="{active: mostraGrupo('segmentos')}">
+              <i class="icon" ng-class="mostraGrupo('segmentos') ? 'ion-minus' : 'ion-plus'"></i>
+            Segmento
+            </ion-item>
+        
+            <ion-checkbox ng-model='s.isChecked' 
+                          ng-repeat='s in segmentos'
+                          class="item-accordion"
+                          ng-show="mostraGrupo('segmentos')">{{ s.segmento }}
+            </ion-checkbox>
+            
+            <ion-item class="item-stable"
+                    ng-click="toggleGroup('empresas')"
+                    ng-class="{active: mostraGrupo('empresas')}">
+              <i class="icon" ng-class="mostraGrupo('empresas') ? 'ion-minus' : 'ion-plus'"></i>
+            Empresas / PDVs
+            </ion-item>
+            
+            <div class="item-accordion"
+                 ng-repeat='e in empresas'
+                 ng-show="mostraGrupo('empresas')">
+                <div class='row'>
+                    <div class='col-10'>
+                        <button class="button button-positive" ng-click="togglePdv(e.nroempresa, $index);">
+                            <i class="icon" ng-class="mostraPdvs(e.nroempresa) ? 'ion-minus' : 'ion-plus'"></i>
+                        </button>
+                    </div>
+                    <div class='col-90'>
+                        <ion-checkbox ng-model='e.isChecked' 
+                                      >{{ e.nomereduzido }}</ion-checkbox>
+                    </div>
+                </div>
+                
+                <div ng-repeat='p in e.listaPdv' class='row'>
+                    <div class='col-90 col-offset-10'>
+                        <ion-checkbox ng-model='p.isChecked'
+                                      class="item-accordion"
+                                      ng-click='clickPdv(e, p)'>{{ p.nrocheckout }}
+                        </ion-checkbox>
+                    </div>
+                </div>
+                
+            </div>
+            
         </form>
         <a class="button button-positive button-block button-large">Gerar Padrões</a>
     </ion-content>
