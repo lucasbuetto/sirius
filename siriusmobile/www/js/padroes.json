@@ -1,0 +1,27 @@
+[
+  {
+    guid: 541001,
+    frequencia: 20.01,
+    padrao: "Banana, maça e mamão"
+  },
+  {
+    guid: 541002,
+    frequencia: 35.03,
+    padrao: "Contra filé, alho, cebola"
+  },
+  {
+    guid: 541003,
+    frequencia: 15.9,
+    padrao: "Omo multiação, sabonete dove"
+  },
+  {
+    guid: 541004,
+    frequencia: 43.6,
+    padrao: "Pão fatiado wikibold, leite jussara, requeijão Criolo, iogurte nestle e flan Paulista"
+  },
+  {
+    guid: 541005,
+    frequencia: 30,
+    padrao: "Alface e tomate"
+  }    
+]

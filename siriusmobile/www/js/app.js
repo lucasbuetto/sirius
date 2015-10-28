@@ -5,18 +5,51 @@
 // the 2nd parameter is an array of 'requires'
 // 'starter.services' is found in services.js
 // 'starter.controllers' is found in controllers.js
-angular.module('siriusApp', ['ionic', 'app.controllers', 'app.routes', 'app.services', 'app.directives'])
+angular.module('siriusApp', ['ionic', 'app.controllers', 'app.routes', 'app.services', 'app.directives', 'nvd3'])
 
-.run(function($ionicPlatform) {
-  $ionicPlatform.ready(function() {
-    // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
-    // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
-      cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+.config(function($httpProvider) {
+    $httpProvider.interceptors.push(function($q, $rootScope) {
+        return {
+            request: function(config) {
+                $rootScope.$broadcast('loading:show');
+                return config
+            },
+            requestError: function(rejection) {
+                $rootScope.$broadcast('loading:hide');
+                return $q.reject(rejection);
+            },
+
+            response: function(response) {
+                $rootScope.$broadcast('loading:hide');
+                return response
+            },
+            
+            'responseError': function(rejection) {
+                $rootScope.$broadcast('loading:hide');
+                return $q.reject(rejection);
+            }
     }
-    if(window.StatusBar) {
-      // org.apache.cordova.statusbar required
-      StatusBar.styleDefault();
-    }
-  });
+  })
+})
+
+.run(function($ionicPlatform, $ionicLoading, $rootScope) {
+    $ionicPlatform.ready(function() {
+        // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
+        // for form inputs)
+        if(window.cordova && window.cordova.plugins.Keyboard) {
+            cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
+        }
+        if(window.StatusBar) {
+            // org.apache.cordova.statusbar required
+            StatusBar.styleDefault();
+        }
+    });
+    
+    $rootScope.$on('loading:show', function() {
+        $ionicLoading.show({template: '<ion-spinner icon="bubbles"></ion-spinner>'})
+    })
+
+    $rootScope.$on('loading:hide', function() {
+        $ionicLoading.hide()
+    })
 })

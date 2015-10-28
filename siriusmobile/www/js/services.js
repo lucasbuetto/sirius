@@ -26,39 +26,51 @@ angular.module('app.services', [])
     }
 }])
 
-.service('serverConfig', function () {
+.service('ServerConfig', function () {
     this.serverUrl = "http://cpro29838.publiccloud.com.br:8080/SiriusRestAPI";
 })
 
-.service('dataService', ['$http', function ($http) {
+.service('DataService', ['$http', function ($http) {
     delete $http.defaults.headers.common['X-Requested-With'];
     this.url = "";
     this.params = "";
     this.data = "";
-    this.getData = function (callbackFunc) {
+    this.getData = function (successCallback, errorCallback) {
         $http({
             method: 'GET',
             url: this.url,
             params: this.params
             //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
         }).success(function (data) {
-            callbackFunc(data);
+            sleep(3000);
+            successCallback(data);
         }).error(function (data) {
-            console.log(data);
-
+            errorCallback(data);
         });
     }
-    this.postData = function (callbackFunc) {
+    this.postData = function (successCallback, errorCallback) {
         $http({
             method: 'POST',
             url: this.url,
             data: this.data
             //headers: {'Authorization': 'Token token=xxxxYYYYZzzz'}
         }).success(function (data) {
-            callbackFunc(data);
+            successCallback(data);
         }).error(function (data) {
-            console.log(data);
+            errorCallback(data);
         });
     }
-}]);;
+    
+    function sleep(delay) {
+        var start = new Date().getTime();
+        while (new Date().getTime() < start + delay);
+    }
+}])
+
+.service('PadroesService', [function(f){
+    var filtros = f;
+    return {
+        filtros: filtros
+    };
+}]);
 

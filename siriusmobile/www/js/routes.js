@@ -19,11 +19,32 @@ angular.module('app.routes', [])
       templateUrl: 'templates/filtros.html',
       controller: 'FiltrosCtrl'
     })
-      
+    
+    // Rotas para a tela de exibição dos padrões
     .state('padroes', {
-      url: '/padroes',
-      templateUrl: 'templates/padroes.html',
-      controller: 'PadroesCtrl'
+        url: '/padroes',
+        abstract: true,
+        templateUrl: 'templates/padroes.html'
+    })
+
+    .state('padroes.grafico', {
+        url: '/grafico',
+        views: {
+            'padroes-grafico': {
+                templateUrl: 'templates/padroes-grafico.html',
+                controller: 'PadroesCtrl'
+            }
+        }
+    })
+  
+    .state('padroes.analitico', {
+        url: '/analitico',
+        views: {
+            'padroes-analitico': {
+                templateUrl: 'templates/padroes-analitico.html',
+                controller: 'PadroesCtrl'
+            }
+        }
     });
 
   // if none of the above states are matched, use this as the fallback

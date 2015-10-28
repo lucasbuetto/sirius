@@ -25,7 +25,7 @@
             </div>
             
             <ion-item class="item-stable"
-                    ng-click="toggleGroup('segmentos')"
+                    ng-click="toggleGroup('segmentos'); carregaSegmentos()"
                     ng-class="{active: mostraGrupo('segmentos')}">
               <i class="icon" ng-class="mostraGrupo('segmentos') ? 'ion-minus' : 'ion-plus'"></i>
             Segmento
@@ -38,7 +38,7 @@
             </ion-checkbox>
             
             <ion-item class="item-stable"
-                    ng-click="toggleGroup('empresas')"
+                    ng-click="toggleGroup('empresas'); carregaEmpresas()"
                     ng-class="{active: mostraGrupo('empresas')}">
               <i class="icon" ng-class="mostraGrupo('empresas') ? 'ion-minus' : 'ion-plus'"></i>
             Empresas / PDVs
@@ -71,6 +71,8 @@
             </div>
             
         </form>
-        <a class="button button-positive button-block button-large">Gerar Padrões</a>
+        <a class="button button-positive button-block button-large" ng-click='gerarPadroes()'>Gerar Padrões</a>
+        
+        
     </ion-content>
 </ion-view>
