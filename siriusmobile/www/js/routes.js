@@ -1,4 +1,4 @@
-angular.module('app.routes', [])
+angular.module('app.routes', ['app.controllers'])
 
 .config(function($stateProvider, $urlRouterProvider) {
 

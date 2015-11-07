@@ -6,12 +6,16 @@
             <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
         </div>
         <form class="list">
-            <label class="item item-input">
+            <ion-item class="item item-input item-floating-label">
+                <span class="input-label">e-mail</span>
                 <input type="email" ng-model='usuario.email' placeholder="e-mail">
-            </label>
-            <label class="item item-input">
-                <input type="password" ng-model='usuario.senha' placeholder="senha">
-            </label>
+            </ion-item>
+            
+            <ion-item class="item item-input item-floating-label">
+                <span class="input-label">Senha</span>
+                <input type="password" ng-model='usuario.senha' placeholder="Senha">
+            </ion-item>
+            
             <a class="button button-positive button-block " ng-click="login(usuario)">Login</a>
         </form>
     </ion-content>

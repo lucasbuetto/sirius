@@ -12,59 +12,91 @@
             Período
             </ion-item>
             
-            <div class="item-accordion"
-                 ng-show="mostraGrupo('periodo')">
-                <label class="item item-input">
-                    <span class="input-label">De</span>
+            <div ng-show="mostraGrupo('periodo')">
+                <ion-item class="item item-input item-accordion">
+                    <span class="input-label">Data Inicial</span>
                     <input type="date" placeholder="Data Inicial">
-                </label>
-                <label class="item item-input">
-                    <span class="input-label">Até</span>
+                </ion-item>
+                <ion-item class="item item-input item-accordion">
+                    <span class="input-label">Data Final</span>
                     <input type="date" placeholder="Data Final">
-                </label>
+                </ion-item>
+            </div>
+            
+            <ion-item class="item-stable"
+                    ng-click="toggleGroup('frequencia')"
+                    ng-class="{active: mostraGrupo('frequencia')}">
+              <i class="icon" ng-class="mostraGrupo('frequencia') ? 'ion-minus' : 'ion-plus'"></i>
+            Frequência
+            </ion-item>
+            
+            <div ng-show="mostraGrupo('frequencia')">
+                <div class="item range range-positive">
+                    <i class="icon ion-ios-pulse-strong"></i>
+                    <input type="range" name="volume" min="1" max="100" value="frequencia" ng-model='frequencia'>
+                    {{ frequencia }} %
+                </div>
+            </div>
+            
+            
+            <ion-item class="item-stable"
+                    ng-click="toggleGroup('limitePadroes')"
+                    ng-class="{active: mostraGrupo('limitePadroes')}">
+              <i class="icon" ng-class="mostraGrupo('limitePadroes') ? 'ion-minus' : 'ion-plus'"></i>
+            Limite de padrões
+            </ion-item>
+            
+            <div ng-show="mostraGrupo('limitePadroes')">
+                <div class="item range range-positive">
+                    <input type="range" min="1" max="20" value="limitePadroes" ng-model='limitePadroes'>
+                    {{ limitePadroes }}
+                </div>
             </div>
             
             <ion-item class="item-stable"
                     ng-click="toggleGroup('segmentos'); carregaSegmentos()"
-                    ng-class="{active: mostraGrupo('segmentos')}">
-              <i class="icon" ng-class="mostraGrupo('segmentos') ? 'ion-minus' : 'ion-plus'"></i>
+                    ng-class="{active: mostraGrupo('segmentos') && segmentos.length > 0}">
+              <i class="icon" ng-class="mostraGrupo('segmentos') && segmentos.length > 0 ? 'ion-minus' : 'ion-plus'"></i>
             Segmento
             </ion-item>
-        
-            <ion-checkbox ng-model='s.isChecked' 
-                          ng-repeat='s in segmentos'
-                          class="item-accordion"
-                          ng-show="mostraGrupo('segmentos')">{{ s.segmento }}
-            </ion-checkbox>
+            
+            <ion-item ng-repeat='s in segmentos'
+                 class="item item-accordion no-border"
+                 ng-show="mostraGrupo('segmentos')">
+                <ion-checkbox ng-model='s.isChecked' class='no-border'>{{ s.segmento }}
+                </ion-checkbox>
+                <hr ng-hide='$last'>
+            </ion-item>
             
             <ion-item class="item-stable"
                     ng-click="toggleGroup('empresas'); carregaEmpresas()"
-                    ng-class="{active: mostraGrupo('empresas')}">
-              <i class="icon" ng-class="mostraGrupo('empresas') ? 'ion-minus' : 'ion-plus'"></i>
+                    ng-class="{active: mostraGrupo('empresas')  && empresas.length > 0}">
+              <i class="icon" ng-class="mostraGrupo('empresas') && empresas.length > 0 ? 'ion-minus' : 'ion-plus'"></i>
             Empresas / PDVs
             </ion-item>
             
-            <div class="item-accordion"
-                 ng-repeat='e in empresas'
+            <div ng-repeat='e in empresas'
                  ng-show="mostraGrupo('empresas')">
-                <div class='row'>
-                    <div class='col-10'>
-                        <button class="button button-positive" ng-click="togglePdv(e.nroempresa, $index);">
-                            <i class="icon" ng-class="mostraPdvs(e.nroempresa) ? 'ion-minus' : 'ion-plus'"></i>
-                        </button>
-                    </div>
-                    <div class='col-90'>
-                        <ion-checkbox ng-model='e.isChecked' 
-                                      >{{ e.nomereduzido }}</ion-checkbox>
-                    </div>
+                <div class='item item-accordion item-button-left no-border'>
+                    <button class="button button-positive" 
+                            ng-click="togglePdv(e.nroempresa, $index);">
+                        <i class="icon" 
+                           ng-class="mostraPdvs(e.nroempresa) && e.listaPdv.length > 0 ? 'ion-minus' : 'ion-plus'"></i>
+                    </button>
+                    
+                    <ion-checkbox ng-model='e.isChecked' class='no-border'>{{ e.nomereduzido }}</ion-checkbox>
+                    
                 </div>
+                <hr>
                 
-                <div ng-repeat='p in e.listaPdv' class='row'>
-                    <div class='col-90 col-offset-10'>
+                <div ng-repeat='p in e.listaPdv' class='row'
+                     ng-show='mostraPdvs(e.nroempresa) && e.listaPdv.length > 0'>
+                    <div class='col no-border'>
                         <ion-checkbox ng-model='p.isChecked'
-                                      class="item-accordion"
-                                      ng-click='clickPdv(e, p)'>{{ p.nrocheckout }}
+                                      class="item-accordion no-border" 
+                                      ng-click='clickPdv(e, p)'>{{ p.ip }}
                         </ion-checkbox>
+                        <hr>
                     </div>
                 </div>
                 
