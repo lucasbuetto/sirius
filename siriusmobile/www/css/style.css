@@ -1,11 +1,72 @@
 /* Empty. Add your own CSS if you like */
-.checkbox-button{
+
+/*#region View */
+
+.pane, .view {
+    background-color: #e5e5e5;
+}
+
+.login-logo {
+    text-align: center;
+    width: 192px;
+    margin: 0 auto;
+}
+
+    .login-logo img {
+        height: 190px;
+    }
+
+.login-background {
+    background-image: url(../img/background_mobile.jpg);
+    background-size: cover;
+}
+
+/*#endregion */
+
+/*#region Form */
+
+.item-input {
+    background-color: rgba(255,255,255,0.80);
+    border-radius: 4px !important;
+}
+
+input::-webkit-input-placeholder {
+    color: #706f6f;
+}
+
+/*#region Login */
+
+.login-view input {
+    font-size: 20px;
+}
+
+.login-view .button {
+    padding: 8px;
+    border: none;
+}
+
+.login-input {
+    margin-bottom: 0.7em;
+    margin-top: 10px;
+}
+
+/*#endregion */
+
+.input-label {
+    color: #706f6f;
+}
+
+.checkbox-button {
     float: left;
 }
 
-.checkbox-label{
+.checkbox-label {
     margin-left: 1em;
 }
+
+/*#endregion */
+
+/*#region Accordion */
 
 .item-accordion {
     line-height: 38px;
@@ -14,15 +75,22 @@
     transition: 0.3s all linear;
 }
 
-.item-accordion.ng-hide {
-    line-height: 0px;
-}
+    .item-accordion.ng-hide {
+        line-height: 0px;
+    }
 
-.item-accordion.ng-hide-add,
-.item-accordion.ng-hide-remove {
-    display: block !important; 
-}
+    .item-accordion.ng-hide-add,
+    .item-accordion.ng-hide-remove {
+        display: block !important;
+    }
 
-.no-border{
+/*#endregion */
+
+/*#region Misc */
+
+.no-border {
     border: none;
 }
+
+/*#endregion */
+

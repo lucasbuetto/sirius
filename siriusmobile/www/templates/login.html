@@ -1,21 +1,24 @@
-<ion-view title="Login">
-    <ion-content padding="true" class="has-header">
+<ion-view title="Login" class="login-background login-view">
+    <ion-content padding="true">
         <ion-list></ion-list>
         <div class="button-bar"></div>
-        <div style="line-height: 250px; border: 1px solid rgb(238, 238, 238); border-radius: 3px; text-align: center; width: 100%; height: auto; background-color: rgb(255, 255, 255);">
+        <!--<div style="line-height: 250px; text-align: center; width: 100%; height: auto;">
             <i class="icon ion-image" style="font-size: 64px; color: rgb(136, 136, 136); vertical-align: middle;"></i>
+        </div>-->
+        <div class="login-logo">
+            <img src="../img/login_sirius_logo.png" alt="" />
         </div>
         <form class="list">
-            <ion-item class="item item-input item-floating-label">
+            <ion-item class="item item-input item-floating-label login-input">
                 <span class="input-label">e-mail</span>
                 <input type="email" ng-model='usuario.email' placeholder="e-mail">
             </ion-item>
-            
+
             <ion-item class="item item-input item-floating-label">
                 <span class="input-label">Senha</span>
                 <input type="password" ng-model='usuario.senha' placeholder="Senha">
             </ion-item>
-            
+
             <a class="button button-positive button-block " ng-click="login(usuario)">Login</a>
         </form>
     </ion-content>
