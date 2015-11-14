@@ -7,19 +7,19 @@
     margin-left: 1em;
 }
 
-.item.item-accordion {
+.item-accordion {
     line-height: 38px;
     padding-top: 0;
     padding-bottom: 0;
     transition: 0.3s all linear;
 }
 
-.item.item-accordion.ng-hide {
+.item-accordion.ng-hide {
     line-height: 0px;
 }
 
-.item.item-accordion.ng-hide-add,
-.item.item-accordion.ng-hide-remove {
+.item-accordion.ng-hide-add,
+.item-accordion.ng-hide-remove {
     display: block !important; 
 }
 

@@ -1,0 +1,5 @@
+{
+    "jscodehints.detectedExclusions": [
+        "C:/AcruxSirius/siriusmobile/platforms/android/build/intermediates/assets/debug/www/cordova-js-src/plugin/android/app.js"
+    ]
+}
